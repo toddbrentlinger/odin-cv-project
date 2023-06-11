@@ -1,14 +1,17 @@
 import React, { Component } from "react";
+import { createDateSpanString } from "../utilities";
 
 class Experience extends Component {
     render() {
+        const {companyName, positionTitle, mainTasks, startDate, endDate} = this.props;
+
         return (
-            <section className="experience">
-                <div>{this.props.companyName}</div>
-                <div>{this.props.positionTitle}</div>
-                <div>{this.props.mainTasks}</div>
-                <div>{this.props.startDate} - {this.props.endDate}</div>
-            </section>
+            <li className="experience">
+                <div>{companyName}</div>
+                <div>{positionTitle}</div>
+                <div>{mainTasks}</div>
+                <div>{createDateSpanString(startDate, endDate)}</div>
+            </li>
         );
     }
 }
