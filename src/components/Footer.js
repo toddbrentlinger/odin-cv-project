@@ -13,7 +13,7 @@ class Footer extends Component {
             <footer>
                 <p>
                     <small>
-                        Source Code &copy; <time id="copyright-current-year">{this.getCopyrightString()}</time> Todd Brentlinger, Santa Cruz, CA, USA. All Rights Reserved.
+                        <a href={this.props.sourceCodeUrl} target="_blank" rel="noreferrer">Source Code</a> &copy; <time id="copyright-current-year">{this.getCopyrightString()}</time> Todd Brentlinger, Santa Cruz, CA, USA. All Rights Reserved.
                     </small>
                 </p>
             </footer>

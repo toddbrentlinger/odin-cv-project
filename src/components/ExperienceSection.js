@@ -11,16 +11,14 @@ class ExperienceSection extends Component {
                 {
                     id: uniqid(),
                     companyName: "Princeton University",
-                    positionTitle: "Associate Dean",
-                    mainTasks: [],
-                    startDate: 1957,
-                    endDate: "",
-                },
-                {
-                    id: uniqid(),
-                    companyName: "Princeton University",
                     positionTitle: "Professor of Archaeology",
-                    mainTasks: [],
+                    mainTasks: [
+                        "Conduct research in a particular field of knowledge and present findings in professional journals, books, electronic media, or at professional conferences.",
+                        "Keep abreast of developments in the field by reading current literature, talking with colleagues, and participating in professional conferences.",
+                        "Prepare and deliver lectures to undergraduate or graduate students on topics such as research methods, urban anthropology, and language and culture.",
+                        "Initiate, facilitate, and moderate classroom discussions.",
+                        "Evaluate and grade students' class work, assignments, and papers.",
+                    ],
                     startDate: 1925,
                     endDate: "",
                 },

@@ -5,12 +5,14 @@ class Experience extends Component {
     render() {
         const {companyName, positionTitle, mainTasks, startDate, endDate} = this.props;
 
+        const mainTaskComponents = mainTasks.map((task, index) => <li key={index}>{task}</li>);
+
         return (
             <li className="experience">
-                <div>{companyName}</div>
                 <div>{positionTitle}</div>
-                <div>{mainTasks}</div>
+                <div>{companyName}</div>
                 <div>{createDateSpanString(startDate, endDate)}</div>
+                <ul>{mainTaskComponents}</ul>
             </li>
         );
     }

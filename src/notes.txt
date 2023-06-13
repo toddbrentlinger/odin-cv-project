@@ -28,3 +28,7 @@ ExperienceSection
         startDate
         endDate
 ExperienceForm
+
+- Curriculum-vitae-warning-icon.svg by SleaY (Wikimedia Commons) from https://commons.wikimedia.org/wiki/File:Curriculum-vitae-warning-icon.svg
+
+https://theenchantedmanor.com//wp-content/uploads/2016/06/Indiana-Jones-1a.jpg

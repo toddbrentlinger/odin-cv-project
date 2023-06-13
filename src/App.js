@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <>
         <header>
-          <h1>CV Project</h1>
+          <h1>Odin CV Project</h1>
         </header>
 
         <main>
@@ -21,9 +21,10 @@ class App extends Component {
           <hr />
           <ExperienceSection />
         </main>
-        
+
         <Footer
           initialYear={2023}
+          sourceCodeUrl="https://toddbrentlinger.github.io/odin-cv-project/"
         />
       </>
     );
