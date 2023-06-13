@@ -2,9 +2,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+@mixin boxShadow($blurRadius: 1rem) {
+    box-shadow: 0 0 $blurRadius var(--base-black, black);
+}
+
 :root {
     --base-white: hsl(0, 0%, 95%);
     --base-black: hsl(0, 0%, 10%);
+
+    --primary: #f16633;
+    --secondary: #A52E02;
+    --tertiary: #FFA583;
 }
 
 html {
@@ -26,8 +34,6 @@ body {
 
 #root {
     min-height: 100vh;
-    max-width: 100rem;
-    margin: 0 auto;
 
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -45,10 +51,14 @@ header {
     grid-area: header;
     display: grid;
     place-items: center;
+    @include boxShadow;
 }
 
 main {
     grid-area: main;
+    width: 100%;
+    max-width: 100rem;
+    margin: 0 auto;
 }
 
 footer {
@@ -57,6 +67,78 @@ footer {
     text-align: center;
     display: grid;
     place-items: center;
+    @include boxShadow;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+
+    &:hover, &:active {
+        background-color: var(--base-black, black);
+        color: var(--base-white, white);
+    }
+}
+
+// Custom IDs
+
+#thumbnail {
+    position: relative;
+    width: 20rem;
+    height: 20rem;
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 50%;
+
+    button {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        // Grid
+        display: grid;
+        align-items: center;
+        justify-items: center;
+    }
+}
+
+#thumbnail-edit-controller {
+    display: grid;
+    grid-template-columns: 2rem auto 2rem;
+    grid-template-rows: 2rem auto 2rem;
+    grid-template-areas: 
+        ". arrow-up ."
+        "arrow-left thumbnail arrow-right"
+        ". arrow-down .";
+    align-items: center;
+    justify-items: center;
+    gap: 1rem;
+
+    #arrow-up-container {
+        grid-area: arrow-up;
+    }
+    #arrow-down-container {
+        grid-area: arrow-down;
+    }
+    #arrow-left-container {
+        grid-area: arrow-left;
+    }
+    #arrow-right-container {
+        grid-area: arrow-right;
+    }
+
+    #thumbnail {
+        grid-area: thumbnail;
+    }
+
+    .arrow {
+        cursor: pointer;
+    }
 }
 
 // Custom Classes
@@ -92,5 +174,48 @@ footer {
                 top: 0%;
             }
         }
+    }
+}
+
+.education, .experience {
+    margin: 1em 0;
+}
+
+.education {
+
+}
+
+.experience {
+    ul {
+        list-style-type: disc;
+        margin: 0 2em;
+    }
+}
+
+
+.modal {
+    position: fixed; // Stay in place
+    z-index: 1; // Sit on top
+    left: 0;
+    top: 0;
+    width: 100%; // Full width
+    height: 100%; // Full height
+    overflow: auto; // Enable scroll if needed
+    background-color: rgb(0, 0, 0); // Fallback color
+    background-color: rgba(0, 0, 0, 0.4); // Black w/ opacity
+    // Grid
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    .modal-content {
+        background-color: #fefefe;
+        padding: 2rem;
+        border: 1px solid #888;
+        width: 80%; // Could be more or less, depending on screen size
+        // Grid
+        display: grid;
+        justify-content: center;
+        align-content: space-evenly;
     }
 }
