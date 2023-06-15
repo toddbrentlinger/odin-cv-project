@@ -78,8 +78,15 @@ button {
     cursor: pointer;
 
     &:hover, &:active {
-        background-color: var(--base-black, black);
         color: var(--base-white, white);
+    }
+
+    &:hover {
+        background-color: var(--tertiary, gray);
+    }
+
+    &:active {
+        background-color: var(--secondary, black);
     }
 }
 
@@ -112,9 +119,9 @@ button {
     grid-template-columns: 2rem auto 2rem;
     grid-template-rows: 2rem auto 2rem;
     grid-template-areas: 
-        ". arrow-up ."
+        ". arrow-up scale-up"
         "arrow-left thumbnail arrow-right"
-        ". arrow-down .";
+        ". arrow-down scale-down";
     align-items: center;
     justify-items: center;
     gap: 1rem;
@@ -130,6 +137,14 @@ button {
     }
     #arrow-right-container {
         grid-area: arrow-right;
+    }
+
+    #scale-up-container {
+        grid-area: scale-up;
+    }
+
+    #scale-down-container {
+        grid-area: scale-down;
     }
 
     #thumbnail {

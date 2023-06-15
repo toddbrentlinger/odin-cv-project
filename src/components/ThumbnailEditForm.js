@@ -71,6 +71,24 @@ class ThumbnailEditForm extends Component {
         });
     };
 
+    increaseSize = () => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                size: prevState.size + 1,
+            };
+        });
+    };
+
+    decreaseSize = () => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                size: prevState.size - 1,
+            };
+        });
+    };
+
     render() {
         const {handleSubmit, handleCancel} = this.props;
         const {imageUrl, size, posX, posY} = this.state;
@@ -79,17 +97,23 @@ class ThumbnailEditForm extends Component {
             <Modal handleCancel={handleCancel}>
                 <h2>Edit Thumbnail</h2>
                 <section id="thumbnail-edit-controller">
-                    <button id="arrow-up-container" className="arrow" onClick={this.decreasePosY}>
+                    <button id="arrow-up-container" className="arrow" onClick={this.decreasePosY} title="Move Up" aria-label="Move thumbnail up">
                         <span className="fa-solid fa-arrow-up"></span>
                     </button>
-                    <button id="arrow-down-container" className="arrow" onClick={this.increasePosY}>
+                    <button id="arrow-down-container" className="arrow" onClick={this.increasePosY} title="Move Down" aria-label="Move thumbnail down">
                         <span className="fa-solid fa-arrow-down"></span>
                     </button>
-                    <button id="arrow-left-container" className="arrow" onClick={this.decreasePosX}>
+                    <button id="arrow-left-container" className="arrow" onClick={this.decreasePosX} title="Move Left" aria-label="Move thumbnail left">
                         <span className="fa-solid fa-arrow-left"></span>
                     </button>
-                    <button id="arrow-right-container" className="arrow" onClick={this.increasePosX}>
+                    <button id="arrow-right-container" className="arrow" onClick={this.increasePosX} title="Move Right" aria-label="Move thumbnail right">
                         <span className="fa-solid fa-arrow-right"></span>
+                    </button>
+                    <button id="scale-up-container" className="scale" onClick={this.increaseSize} title="Scale Up" aria-label="Scale thumbnail up">
+                        <span className="fa-solid fa-plus"></span>
+                    </button>
+                    <button id="scale-down-container" className="scale" onClick={this.decreaseSize} title="Scale Down" aria-label="Scale thumbnail down">
+                        <span className="fa-solid fa-minus"></span>
                     </button>
                     <div 
                         id="thumbnail"
@@ -114,26 +138,11 @@ class ThumbnailEditForm extends Component {
                             <span>Image URL</span>
                         </label>
                     </div>
-                    <div className="custom-input">
-                        <label>
-                            <input type="number" name="size" placeholder=" " value={size} onChange={this.handleInputChange} />
-                            <span>Size (Percentage)</span>
-                        </label>
-                    </div>
-                    <input type="hidden" name="posX" placeholder=" " value={posX} onChange={this.handleInputChange} />
-                    <input type="hidden" name="posY" placeholder=" " value={posY} onChange={this.handleInputChange} /> 
-                    {/* <div className="custom-input">
-                        <label>
-                            <input type="number" name="posX" placeholder=" " value={posX} onChange={this.handleInputChange} />
-                            <span>X-coord Position</span>
-                        </label>
-                    </div>
-                    <div className="custom-input">
-                        <label>
-                            <input type="number" name="posY" placeholder=" " value={posY} onChange={this.handleInputChange} />
-                            <span>Y-coord Position</span>
-                        </label>
-                    </div> */}
+
+                    <input type="hidden" name="posX" value={posX} onChange={this.handleInputChange} />
+                    <input type="hidden" name="posY" value={posY} onChange={this.handleInputChange} /> 
+                    <input type="hidden" name="size" value={size} onChange={this.handleInputChange} />
+
                     <div className="form-btn-container">
                         <button type="submit">Add</button>
                         <button 
