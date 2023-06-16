@@ -1,6 +1,6 @@
 export function createDateSpanString(startDate, endDate) {
     if (!endDate) {
-        return `${startDate} - current`;
+        return `${startDate} - present`;
     }
     
     if (startDate === endDate) {

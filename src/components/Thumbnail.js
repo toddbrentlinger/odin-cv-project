@@ -40,9 +40,9 @@ class Thumbnail extends Component {
         const {imageUrl, size = 100, posX = 0, posY = 0} = this.props;
 
         return (
-            <section id="thumbnail-container">
+            <section className="thumbnail-container">
                 <div 
-                    id="thumbnail"
+                    className="thumbnail"
                     style={{
                         backgroundImage: `url(${imageUrl})`,
                         backgroundSize: `${size}%`,

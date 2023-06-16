@@ -9,8 +9,10 @@ class GeneralInfoSection extends Component {
 
         this.state = {
             name: "Indiana Jones",
+            title: "Archaeologist",
             email: "henryjonesjr@princeton.edu",
             phone: "(609) 258-0103",
+            address: "Princeton University, 3-S-2 Green Hall Princeton, New Jersey 08544",
             thumbnail: {
                 url: "https://scontent-sjc3-1.xx.fbcdn.net/v/t31.18172-8/24883563_474515209616195_175625574350703270_o.jpg?stp=cp0_dst-jpg_e15_p320x320_q65&_nc_cat=111&ccb=1-7&_nc_sid=8024bb&_nc_ohc=iXYv1CfC8O4AX9wJ59L&_nc_ht=scontent-sjc3-1.xx&oh=00_AfAMPdHJXyHK5IqWa3gIcSESr51SwqZmRMBlOBx__RfKHA&oe=64AECB4C",
                 size: 110,
@@ -37,7 +39,7 @@ class GeneralInfoSection extends Component {
     };
 
     render() {
-        const {name, email, phone, thumbnail} = this.state;
+        const {name, title, email, phone, address, thumbnail} = this.state;
 
         return (
             <article id="general-info-section">
@@ -51,8 +53,10 @@ class GeneralInfoSection extends Component {
                 />
                 <GeneralInfo
                     name={name}
+                    title={title}
                     email={email}
                     phone={phone}
+                    address={address}
                 />
                 {/* <GeneralInfoForm /> */}
             </article>

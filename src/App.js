@@ -24,7 +24,7 @@ class App extends Component {
 
         <Footer
           initialYear={2023}
-          sourceCodeUrl="https://toddbrentlinger.github.io/odin-cv-project/"
+          sourceCodeUrl="https://github.com/toddbrentlinger/odin-cv-project"
         />
       </>
     );

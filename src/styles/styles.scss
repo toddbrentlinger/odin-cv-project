@@ -92,25 +92,55 @@ button {
 
 // Custom IDs
 
-#thumbnail {
-    position: relative;
-    width: 20rem;
-    height: 20rem;
-    display: inline-block;
-    border: 2px solid black;
-    border-radius: 50%;
-
-    button {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 3rem;
-        height: 3rem;
-        border-radius: 50%;
-        // Grid
+#education-section {
+    ul {
         display: grid;
-        align-items: center;
+        grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
         justify-items: center;
+    }
+}
+
+#experience-section {
+    & > ul {
+        & > li {
+            border-bottom: 1px solid var(--base-black, black);
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}
+
+#general-info-section {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+        "thumbnail heading"
+        "thumbnail info";
+    gap: 1rem;
+
+    & > h2 {
+        grid-area: heading;
+    }
+
+    .thumbnail-container {
+        grid-area: thumbnail;
+    }
+
+    #general-info-content {
+        grid-area: info;
+        display: grid;
+
+        #general-contact-info {
+            display: grid;
+            //grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+
+            .icon-container {
+                margin-right: 0.5em;
+            }
+        }
     }
 }
 
@@ -147,7 +177,7 @@ button {
         grid-area: scale-down;
     }
 
-    #thumbnail {
+    .thumbnail {
         grid-area: thumbnail;
     }
 
@@ -193,20 +223,45 @@ button {
 }
 
 .education, .experience {
-    margin: 1em 0;
+    padding: 1em 0;
 }
 
 .education {
-
+    
 }
 
 .experience {
-    ul {
+    display: grid;
+    grid-template-areas: 
+        "position date"
+        "company date"
+        "task-list task-list";
+    align-items: center;
+
+    .experience-positon {
+        grid-area: position;
+    }
+
+    .experience-company {
+        grid-area: company;
+    }
+
+    .experience-date {
+        grid-area: date;
+        justify-self: end;
+    }
+
+    .experience-task-list {
+        grid-area: task-list;
         list-style-type: disc;
         margin: 0 2em;
     }
 }
 
+.form-btn-container {
+    display: grid;
+    grid-auto-flow: column;
+}
 
 .modal {
     position: fixed; // Stay in place
@@ -232,5 +287,27 @@ button {
         display: grid;
         justify-content: center;
         align-content: space-evenly;
+    }
+}
+
+.thumbnail {
+    position: relative;
+    width: 20rem;
+    height: 20rem;
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 50%;
+
+    button {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        // Grid
+        display: grid;
+        align-items: center;
+        justify-items: center;
     }
 }

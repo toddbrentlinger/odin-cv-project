@@ -9,10 +9,10 @@ class Experience extends Component {
 
         return (
             <li className="experience">
-                <div>{positionTitle}</div>
-                <div>{companyName}</div>
-                <div>{createDateSpanString(startDate, endDate)}</div>
-                <ul>{mainTaskComponents}</ul>
+                <div className="experience-position">{positionTitle}</div>
+                <div className="experience-company">{companyName}</div>
+                <div className="experience-date">{createDateSpanString(startDate, endDate)}</div>
+                <ul className="experience-task-list">{mainTaskComponents}</ul>
             </li>
         );
     }
