@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { clamp } from "../utilities";
 
 class PressHoldButton extends Component {
     constructor(props) {
@@ -39,10 +40,18 @@ class PressHoldButton extends Component {
         });
     };
 
-    repeat = () => {
+    repeat = (delay = this.props.delayMax) => {
         this.props.onMouseDown();
 
-        const timeout = setTimeout(this.repeat, this.props.delay);
+        const newDelay = clamp(
+            delay / this.props.speedFactor,
+            this.props.delayMin,
+            this.props.delayMax
+        );
+
+        const timeout = setTimeout(() => {
+            this.repeat(newDelay);
+        }, newDelay);
         
         this.setState((prevState) => {
             return {
@@ -87,7 +96,9 @@ class PressHoldButton extends Component {
 }
 
 PressHoldButton.defaultProps = {
-    delay: 500,
+    delayMax: 300,
+    delayMin: 20,
+    speedFactor: 1.3,
 };
 
 export default PressHoldButton;
