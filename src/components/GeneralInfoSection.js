@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import GeneralInfo from "./GeneralInfo";
-//import GeneralInfoForm from "./GeneralInfoForm";
 import Thumbnail from "./Thumbnail";
 
 class GeneralInfoSection extends Component {
@@ -9,7 +8,7 @@ class GeneralInfoSection extends Component {
 
         this.state = {
             name: "Indiana Jones",
-            title: "Archaeologist",
+            title: "Archaeologist-Adventurer",
             email: "henryjonesjr@princeton.edu",
             phone: "(609) 258-0103",
             address: "Princeton University, 3-S-2 Green Hall Princeton, New Jersey 08544",
@@ -19,8 +18,24 @@ class GeneralInfoSection extends Component {
                 posX: 0,
                 posY: 0,
             },
+            displayEditForm: false,
         };
     }
+
+    handleEditSubmit = (e) => {
+        e.preventDefault();
+
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                name: e.target.elements.name.value,
+                title: e.target.elements.title.value,
+                email: e.target.elements.email.value,
+                phone: e.target.elements.phone.value,
+                address: e.target.elements.address.value,
+            };
+        });
+    };
 
     handleThumbnailEditSubmit = (e) => {
         e.preventDefault();
@@ -57,8 +72,8 @@ class GeneralInfoSection extends Component {
                     email={email}
                     phone={phone}
                     address={address}
+                    handleEditSubmit={this.handleEditSubmit}
                 />
-                {/* <GeneralInfoForm /> */}
             </article>
         );
     }
