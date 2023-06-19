@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import Modal from "./Modal";
+import GeneralInfoForm from "./GeneralInfoForm";
 
 class GeneralInfo extends Component {
     constructor(props) {
@@ -38,59 +40,25 @@ class GeneralInfo extends Component {
     };
 
     renderEditForm() {
-        const {name, title, email, phone, address} = this.props;
+        const {name, title, email, phone, location} = this.props;
 
         return (
-            <form
-                action=""
-                method="set"
-                onSubmit={this.handleEditSubmit}
-            >
-                <div className="custom-input">
-                    <label>
-                        <input type="text" name="name" placeholder=" " defaultValue={name} required />
-                        <span>Name</span>
-                    </label>
-                </div>
-                <div className="custom-input">
-                    <label>
-                        <input type="text" name="title" placeholder=" " defaultValue={title} required />
-                        <span>Title</span>
-                    </label>
-                </div>
-                <div className="custom-input">
-                    <label>
-                        <input type="email" name="email" placeholder=" " defaultValue={email} required />
-                        <span>Email</span>
-                    </label>
-                </div>
-                <div className="custom-input">
-                    <label>
-                        <input type="tel" name="phone" placeholder=" " defaultValue={phone} required />
-                        <span>Phone</span>
-                    </label>
-                </div>
-                <div className="custom-input">
-                    <label>
-                        <input type="text" name="address" placeholder=" " defaultValue={address} required />
-                        <span>Address</span>
-                    </label>
-                </div>
-                <div className="form-btn-container">
-                    <button type="submit">Add</button>
-                    <button 
-                        type="button"
-                        onClick={this.handleEditCancel}
-                    >
-                        Cancel
-                    </button>
-                </div>
-            </form>
+            <Modal handleCancel={this.handleEditCancel}>
+                <GeneralInfoForm
+                    name={name}
+                    title={title}
+                    email={email}
+                    phone={phone}
+                    location={location}
+                    handleCancel={this.handleEditCancel} 
+                    handleSubmit={this.handleEditSubmit} 
+                />
+            </Modal>
         );
     }
 
-    renderGeneralInfo() {
-        const {name, title, email, phone, address} = this.props;
+    render() {
+        const {name, title, email, phone, location} = this.props;
 
         return (
             <section id="general-info-content">
@@ -110,28 +78,27 @@ class GeneralInfo extends Component {
                         </span>
                         {phone}
                     </div>
-                    <div id="general-address">
+                    <div id="general-location">
                         <span className="icon-container">
                             <span className="fa-solid fa-address-book"></span>
                         </span>
-                        {address}
+                        {location}
                     </div>
                 </div>
-
-                <div id="general-info-edit-btn-container">
-                    <button type="button" onClick={this.handleEditClick}>
-                        <span className="fa-solid fa-pen-to-square"></span>
-                        Edit General Info
-                    </button>
-                </div>
+                {
+                    this.state.displayEditForm 
+                        ? this.renderEditForm() 
+                        : (
+                            <div id="general-info-edit-btn-container" className="edit-btn-container">
+                                <button type="button" onClick={this.handleEditClick}>
+                                    <span className="fa-solid fa-pen-to-square"></span>
+                                    Edit General Info
+                                </button>
+                            </div>
+                        )
+                }
             </section>
         );
-    }
-
-    render() {
-        return this.state.displayEditForm 
-            ? this.renderEditForm() 
-            : this.renderGeneralInfo();
     }
 }
 

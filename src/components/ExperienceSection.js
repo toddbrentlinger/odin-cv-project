@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Experience from "./Experience";
 import uniqid from "uniqid";
+import Modal from "./Modal";
+import ExperienceForm from "./ExperienceForm";
 
 class ExperienceSection extends Component {
     constructor(props) {
@@ -103,7 +105,85 @@ class ExperienceSection extends Component {
                     endDate: 1916,
                 },
             ],
+            displayCreateForm: false,
         };
+    }
+
+    handleCreateSubmit = (e) => {
+        e.preventDefault();
+
+        const newExperience = {
+            id: uniqid(),
+            companyName: e.target.elements.company.value,
+            positionTitle: e.target.elements.position.value,
+            mainTasks: e.target.elements.tasks.value.split('\n'),
+            startDate: Number(e.target.elements.startDate.value),
+            endDate: e.target.elements.endDate.value 
+                ? Number(e.target.elements.endDate.value)
+                : null,
+        };
+
+        const newExperienceList = [
+            ...this.state.experienceList,
+            newExperience,
+        ];
+
+        newExperienceList.sort((a,b) => {
+            // If both end dates are null, sort by start date
+            if (a.endDate === null && b.endDate === null) {
+                return b.startDate - a.startDate;
+            }
+
+            // If reach this point, at least one end date is NOT null
+            // If one end date is null, sort that one first
+            if (a.endDate === null) {
+                return -1;
+            }
+            if (b.endDate === null) {
+                return 1;
+            }
+
+            // If reach this point, both end dates are NOT null
+            // Sort by end date, most recent date first
+            return b.endDate - a.endDate;
+        });
+
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                experienceList: newExperienceList,
+                displayCreateForm: false,
+            };
+        });
+    };
+
+    handleCreateClick = () => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                displayCreateForm: true,
+            };
+        });
+    };
+
+    handleCreateCancel = () => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                displayCreateForm: false,
+            };
+        });
+    };
+
+    renderCreateForm() {
+        return (
+            <Modal handleCancel={this.handleCreateCancel}>
+                <ExperienceForm
+                    handleSubmit={this.handleCreateSubmit}
+                    handleCancel={this.handleCreateCancel} 
+                />
+            </Modal>
+        );
     }
 
     render() {
@@ -126,6 +206,18 @@ class ExperienceSection extends Component {
                 <ul>
                     {experienceComponents}
                 </ul>
+                {
+                    this.state.displayCreateForm 
+                        ? this.renderCreateForm() 
+                        : (
+                            <div className="edit-btn-container">
+                                <button type="button" onClick={this.handleCreateClick}>
+                                    <span className="fa-solid fa-plus"></span>
+                                    Add Experience
+                                </button>
+                            </div>
+                        )
+                }
             </article>
         );
     }

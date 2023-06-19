@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class GeneralInfoForm extends Component {
+class EducationForm extends Component {
     handleSubmit = (e) => {
         this.props.handleSubmit(e);
     };
@@ -10,47 +10,42 @@ class GeneralInfoForm extends Component {
     };
 
     render() {
-        const {name, title, email, phone, location} = this.props;
+        const {name, subject, startDate, endDate, formName, formTitle} = this.props;
 
         return (
-            <section id="general-info-edit-form">
-                <h3>Edit General Info</h3>
+            <section id={`${formName}-form`}>
+                <h3>{formTitle}</h3>
                 <form
                     action=""
                     method="set"
                     onSubmit={this.handleSubmit}
-                    name="general-info-edit"
+                    name={formName}
                 >
                     <div className="custom-input">
                         <label>
                             <input type="text" name="name" placeholder=" " defaultValue={name} required autoFocus />
-                            <span>Name</span>
+                            <span>School Name</span>
                         </label>
                     </div>
                     <div className="custom-input">
                         <label>
-                            <input type="text" name="title" placeholder=" " defaultValue={title} required />
-                            <span>Title</span>
+                            <input type="text" name="subject" placeholder=" " defaultValue={subject} required />
+                            <span>Subject</span>
                         </label>
                     </div>
                     <div className="custom-input">
                         <label>
-                            <input type="email" name="email" placeholder=" " defaultValue={email} required />
-                            <span>Email</span>
+                            <input type="number" name="startDate" placeholder=" " defaultValue={startDate} required />
+                            <span>Start Date</span>
                         </label>
                     </div>
                     <div className="custom-input">
                         <label>
-                            <input type="tel" name="phone" placeholder=" " defaultValue={phone} required />
-                            <span>Phone</span>
+                            <input type="number" name="endDate" placeholder=" " defaultValue={endDate} />
+                            <span>End Date (optional)</span>
                         </label>
                     </div>
-                    <div className="custom-input">
-                        <label>
-                            <input type="text" name="location" placeholder=" " defaultValue={location} required />
-                            <span>Location</span>
-                        </label>
-                    </div>
+                    
                     <div className="form-btn-container">
                         <button type="submit">Add</button>
                         <button 
@@ -66,4 +61,9 @@ class GeneralInfoForm extends Component {
     }
 }
 
-export default GeneralInfoForm;
+EducationForm.defaultProps = {
+    formName: 'education-create',
+    formTitle: 'Add New Education',
+};
+
+export default EducationForm;

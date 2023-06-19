@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class GeneralInfoForm extends Component {
+class ExperienceForm extends Component {
     handleSubmit = (e) => {
         this.props.handleSubmit(e);
     };
@@ -10,45 +10,47 @@ class GeneralInfoForm extends Component {
     };
 
     render() {
-        const {name, title, email, phone, location} = this.props;
+        const {companyName, positionTitle, mainTasks, startDate, endDate, formName, formTitle} = this.props;
 
         return (
-            <section id="general-info-edit-form">
-                <h3>Edit General Info</h3>
+            <section id={`${formName}-form`}>
+                <h3>{formTitle}</h3>
                 <form
                     action=""
                     method="set"
                     onSubmit={this.handleSubmit}
-                    name="general-info-edit"
+                    name={formName}
                 >
                     <div className="custom-input">
                         <label>
-                            <input type="text" name="name" placeholder=" " defaultValue={name} required autoFocus />
-                            <span>Name</span>
+                            <input type="text" name="company" placeholder=" " defaultValue={companyName} required autoFocus />
+                            <span>Company Name</span>
                         </label>
                     </div>
                     <div className="custom-input">
                         <label>
-                            <input type="text" name="title" placeholder=" " defaultValue={title} required />
-                            <span>Title</span>
+                            <input type="text" name="position" placeholder=" " defaultValue={positionTitle} required />
+                            <span>Position Title</span>
                         </label>
                     </div>
                     <div className="custom-input">
                         <label>
-                            <input type="email" name="email" placeholder=" " defaultValue={email} required />
-                            <span>Email</span>
+                            <textarea type="text" name="tasks" placeholder="Enter tasks..." rows={3} required>
+                                {mainTasks}
+                            </textarea>
+                            {/* <span>Main Tasks</span> */}
                         </label>
                     </div>
                     <div className="custom-input">
                         <label>
-                            <input type="tel" name="phone" placeholder=" " defaultValue={phone} required />
-                            <span>Phone</span>
+                            <input type="text" name="startDate" placeholder=" " defaultValue={startDate} required />
+                            <span>Start Date</span>
                         </label>
                     </div>
                     <div className="custom-input">
                         <label>
-                            <input type="text" name="location" placeholder=" " defaultValue={location} required />
-                            <span>Location</span>
+                            <input type="text" name="endDate" placeholder=" " defaultValue={endDate} />
+                            <span>End Date (optional)</span>
                         </label>
                     </div>
                     <div className="form-btn-container">
@@ -66,4 +68,9 @@ class GeneralInfoForm extends Component {
     }
 }
 
-export default GeneralInfoForm;
+ExperienceForm.defaultProps = {
+    formName: 'experience-create',
+    formTitle: 'Add New Experience',
+};
+
+export default ExperienceForm;
