@@ -94,6 +94,55 @@ class EducationSection extends Component {
         });
     };
 
+    handleEditSubmit = (e, educationId) => {
+        e.preventDefault();
+
+        // Create copy of education list
+        const newEducationList = [...this.state.educationList];
+
+        // Find matching education obj with matching id
+        const educationToEdit = newEducationList.find((educationObj) => educationObj.id === educationId);
+        
+        // Return if no match was found
+        if (educationToEdit === undefined) { return; }
+
+        // Edit values of matching education object 
+        educationToEdit.schoolName = e.target.elements.name.value;
+        educationToEdit.titleOfStudy = e.target.elements.subject.value;
+        educationToEdit.startDate = Number(e.target.elements.startDate.value);
+        educationToEdit.endDate = e.target.elements.endDate.value 
+            ? Number(e.target.elements.endDate.value)
+            : null;
+
+        // Sort new education list
+        newEducationList.sort((a,b) => {
+            // If both end dates are null, sort by start date
+            if (a.endDate === null && b.endDate === null) {
+                return b.startDate - a.startDate;
+            }
+
+            // If reach this point, at least one end date is NOT null
+            // If one end date is null, sort that one first
+            if (a.endDate === null) {
+                return -1;
+            }
+            if (b.endDate === null) {
+                return 1;
+            }
+
+            // If reach this point, both end dates are NOT null
+            // Sort by end date, most recent date first
+            return b.endDate - a.endDate;
+        });
+
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                educationList: newEducationList,
+            };
+        });
+    };
+
     renderCreateForm() {
         return (
             <Modal handleCancel={this.handleCreateCancel}>
@@ -110,10 +159,8 @@ class EducationSection extends Component {
             return (
                 <Education
                     key={educationInst.id}
-                    schoolName={educationInst.schoolName}
-                    titleOfStudy={educationInst.titleOfStudy}
-                    startDate={educationInst.startDate}
-                    endDate={educationInst.endDate}
+                    educationObj={educationInst}
+                    handleEditSubmit={this.handleEditSubmit}
                 />
             );
         });

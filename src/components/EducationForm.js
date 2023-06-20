@@ -10,7 +10,8 @@ class EducationForm extends Component {
     };
 
     render() {
-        const {name, subject, startDate, endDate, formName, formTitle} = this.props;
+        const {schoolName, titleOfStudy, startDate, endDate} = this.props.educationObj;
+        const {formName, formTitle} = this.props;
 
         return (
             <section id={`${formName}-form`}>
@@ -23,13 +24,13 @@ class EducationForm extends Component {
                 >
                     <div className="custom-input">
                         <label>
-                            <input type="text" name="name" placeholder=" " defaultValue={name} required autoFocus />
+                            <input type="text" name="name" placeholder=" " defaultValue={schoolName} required autoFocus />
                             <span>School Name</span>
                         </label>
                     </div>
                     <div className="custom-input">
                         <label>
-                            <input type="text" name="subject" placeholder=" " defaultValue={subject} required />
+                            <input type="text" name="subject" placeholder=" " defaultValue={titleOfStudy} required />
                             <span>Subject</span>
                         </label>
                     </div>
@@ -62,6 +63,7 @@ class EducationForm extends Component {
 }
 
 EducationForm.defaultProps = {
+    educationObj: {},
     formName: 'education-create',
     formTitle: 'Add New Education',
 };
