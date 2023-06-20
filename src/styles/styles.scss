@@ -57,7 +57,7 @@ header {
 main {
     grid-area: main;
     width: 100%;
-    max-width: 100rem;
+    max-width: 80rem;
     margin: 0 auto;
 }
 
@@ -94,9 +94,14 @@ button {
 
 #education-section {
     ul {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
-        justify-items: center;
+        // display: grid;
+        // grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+        // justify-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 1rem;
+        margin: 1rem 0;
     }
 }
 
@@ -115,50 +120,50 @@ button {
 #general-info-section {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas: 
-        "thumbnail heading"
-        "thumbnail info";
+    grid-template-areas: "thumbnail info";
     gap: 1rem;
-
-    & > h2 {
-        grid-area: heading;
-    }
 
     .thumbnail-container {
         grid-area: thumbnail;
     }
 
+    #general-name {
+        font-size: 5rem;
+    }
+
+    #general-title {
+        font-size: 2rem;
+    }
+
     #general-info-content {
         grid-area: info;
         display: grid;
+        justify-items: center;
 
         #general-contact-info {
             display: grid;
             //grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
 
             .icon-container {
-                margin-right: 0.5em;
+                margin-right: 0.5rem;
             }
         }
 
         #general-info-edit-btn-container {
             align-self: end;
-            justify-self: center;
         }
     }
 }
 
 #thumbnail-edit-controller {
     display: grid;
-    grid-template-columns: 2rem auto 2rem;
-    grid-template-rows: 2rem auto 2rem;
+    grid-template-columns: 2rem min-content 2rem;
+    grid-template-rows: 2rem min-content 2rem;
     grid-template-areas: 
         ". arrow-up scale-up"
         "arrow-left thumbnail arrow-right"
         ". arrow-down scale-down";
-    align-items: center;
-    justify-items: center;
+    justify-content: center;
     gap: 1rem;
 
     #arrow-up-container {
@@ -186,12 +191,46 @@ button {
         grid-area: thumbnail;
     }
 
-    .arrow {
+    button {
         cursor: pointer;
+        display: grid;
+        justify-content: center;
+        align-content: center;
     }
 }
 
 // Custom Classes
+
+.custom-textarea {
+    label {
+        height: 12rem;
+        position: relative;
+        display: flex;
+        flex-direction: column-reverse;
+
+        span, textarea {
+            font-size: 1rem;
+            padding: 1rem;
+            font-family: sans-serif;
+        }
+
+        span {
+            position: relative;
+            top: 3rem;
+            height: 3rem;
+            transition: top 500ms ease-out;
+        }
+
+        textarea {
+            height: 9rem;
+
+            &:focus+span,
+            &:not(:placeholder-shown)+span {
+                top: 0%;
+            }
+        }
+    }
+}
 
 .custom-input {
     label {
@@ -218,7 +257,6 @@ button {
         }
 
         input {
-
             &:focus+span,
             &:not(:placeholder-shown)+span {
                 top: 0%;
@@ -227,12 +265,47 @@ button {
     }
 }
 
+.edit-btn-container {
+    display: grid;
+
+    button {
+        padding: 0.5rem 1rem;
+    }
+}
+
 .education, .experience {
-    padding: 1em 0;
+    
 }
 
 .education {
-    
+    display: grid;
+    grid-template-columns: max-content auto;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: 
+        "name edit-btn"
+        "study edit-btn"
+        "date edit-btn";
+
+    .education-name {
+        grid-area: name;
+    }
+
+    .education-study {
+        grid-area: study;
+    }
+
+    .education-date {
+        grid-area: date;
+    }
+
+    .edit-btn-container {
+        grid-area: edit-btn;
+        margin-left: 1rem;
+
+        button {
+
+        }
+    }
 }
 
 .experience {
@@ -242,6 +315,7 @@ button {
         "company date"
         "task-list task-list";
     align-items: center;
+    padding: 1rem 0;
 
     .experience-positon {
         grid-area: position;
@@ -288,10 +362,23 @@ button {
         padding: 2rem;
         border: 1px solid #888;
         width: 80%; // Could be more or less, depending on screen size
-        // Grid
-        display: grid;
-        justify-content: center;
-        align-content: space-evenly;
+
+        .confirm-modal-content {
+            display: grid;
+            justify-content: center;
+            justify-items: center;
+            gap: 1rem;
+
+            .confirm-btn-container {
+                display: grid;
+                grid-auto-flow: column;
+                gap: 1rem;
+
+                button {
+                    padding: 0.5rem 1rem;
+                }
+            }
+        }
     }
 }
 

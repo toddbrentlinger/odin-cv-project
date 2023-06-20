@@ -1,3 +1,12 @@
+6/18/23
+
+X Replace 'address' key with 'location' in general info
+X Move general info form into own component
+X Move modal component from EducationForm to EducationSection renderForm function.
+X Create similar form component for Experience
+
+Pre-6/18/23
+
 A section to add general information like name, email, phone number.
 
 A section to add your educational experience (school name, title of study, date 

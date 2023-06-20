@@ -14,21 +14,18 @@ class Thumbnail extends Component {
         this.setState((prevState) => {
             return {
                 ...prevState,
-                displayEditForm: !prevState.displayEditForm,
+                displayEditForm: true,
             };
         });
     };
 
     handleEditCancel = () => {
-        console.log('Thumbnail edit cancel!');
         this.setState({
             displayEditForm: false,
         });
     };
 
     handleEditSubmit = (e) => {
-        console.log('Thumbnail edit submit (inside Thumbnail)!');
-
         this.props.handleEditSubmit(e);
 
         this.setState({
@@ -51,11 +48,13 @@ class Thumbnail extends Component {
                     }}
                 >
                     {imageUrl ? null : <span className="fa-solid fa-person"></span>}
-                    <button onClick={this.handleEditClick}>
+                    <button 
+                        onClick={this.handleEditClick}
+                        aria-label="Edit thumbnail"
+                        title="Edit thumbnail"
+                    >
                         <span
                             className="fa-solid fa-pen-to-square"
-                            aria-label="Edit thumbnail"
-                            title="Edit thumbnail"
                         ></span>
                     </button>
                 </div>

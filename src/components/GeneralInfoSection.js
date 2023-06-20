@@ -11,14 +11,13 @@ class GeneralInfoSection extends Component {
             title: "Archaeologist-Adventurer",
             email: "henryjonesjr@princeton.edu",
             phone: "(609) 258-0103",
-            address: "Princeton University, 3-S-2 Green Hall Princeton, New Jersey 08544",
+            location: "Princeton, New Jersey",
             thumbnail: {
                 url: "https://scontent-sjc3-1.xx.fbcdn.net/v/t31.18172-8/24883563_474515209616195_175625574350703270_o.jpg?stp=cp0_dst-jpg_e15_p320x320_q65&_nc_cat=111&ccb=1-7&_nc_sid=8024bb&_nc_ohc=iXYv1CfC8O4AX9wJ59L&_nc_ht=scontent-sjc3-1.xx&oh=00_AfAMPdHJXyHK5IqWa3gIcSESr51SwqZmRMBlOBx__RfKHA&oe=64AECB4C",
                 size: 110,
                 posX: 0,
                 posY: 0,
             },
-            displayEditForm: false,
         };
     }
 
@@ -32,7 +31,7 @@ class GeneralInfoSection extends Component {
                 title: e.target.elements.title.value,
                 email: e.target.elements.email.value,
                 phone: e.target.elements.phone.value,
-                address: e.target.elements.address.value,
+                location: e.target.elements.location.value,
             };
         });
     };
@@ -54,11 +53,10 @@ class GeneralInfoSection extends Component {
     };
 
     render() {
-        const {name, title, email, phone, address, thumbnail} = this.state;
+        const {name, title, email, phone, location, thumbnail} = this.state;
 
         return (
             <article id="general-info-section">
-                <h2>General Info</h2>
                 <Thumbnail
                     imageUrl={thumbnail.url}
                     size={thumbnail.size}
@@ -71,7 +69,7 @@ class GeneralInfoSection extends Component {
                     title={title}
                     email={email}
                     phone={phone}
-                    address={address}
+                    location={location}
                     handleEditSubmit={this.handleEditSubmit}
                 />
             </article>

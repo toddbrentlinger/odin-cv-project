@@ -33,12 +33,12 @@ class ExperienceForm extends Component {
                             <span>Position Title</span>
                         </label>
                     </div>
-                    <div className="custom-input">
+                    <div className="custom-textarea">
                         <label>
-                            <textarea type="text" name="tasks" placeholder="Enter tasks..." rows={3} required>
+                            <textarea type="text" name="tasks" placeholder=" " rows={3} required>
                                 {mainTasks}
                             </textarea>
-                            {/* <span>Main Tasks</span> */}
+                            <span>Main Tasks</span>
                         </label>
                     </div>
                     <div className="custom-input">

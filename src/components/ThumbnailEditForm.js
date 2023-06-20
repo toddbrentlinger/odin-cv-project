@@ -18,15 +18,6 @@ class ThumbnailEditForm extends Component {
         };
     }
 
-    handleClear = () => {
-        this.setState({
-            imageUrl: "",
-            size: 100,
-            posX: 0,
-            posY: 0,
-        });
-    };
-
     handleInputChange = (e) => {
         this.setState((prevState) => {
             return {
@@ -96,7 +87,7 @@ class ThumbnailEditForm extends Component {
 
         return (
             <Modal handleCancel={handleCancel}>
-                <h2>Edit Thumbnail</h2>
+                <h3>Edit Thumbnail</h3>
                 <section id="thumbnail-edit-controller">
                     <PressHoldButton
                         id="arrow-up-container" 
@@ -185,9 +176,9 @@ class ThumbnailEditForm extends Component {
                         <button type="submit">Add</button>
                         <button 
                             type="button"
-                            onClick={this.handleClear}
+                            onClick={handleCancel}
                         >
-                            Clear
+                            Cancel
                         </button>
                     </div>
                 </form>
