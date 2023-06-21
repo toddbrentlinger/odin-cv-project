@@ -59,6 +59,7 @@ main {
     width: 100%;
     max-width: 80rem;
     margin: 0 auto;
+    box-shadow: inset 0 0 0.5rem var(--base-black, black);
 }
 
 footer {
@@ -151,6 +152,7 @@ button {
 
         #general-info-edit-btn-container {
             align-self: end;
+            justify-self: stretch;
         }
     }
 }
@@ -273,10 +275,6 @@ button {
     }
 }
 
-.education, .experience {
-    
-}
-
 .education {
     display: grid;
     grid-template-columns: max-content auto;
@@ -301,19 +299,16 @@ button {
     .edit-btn-container {
         grid-area: edit-btn;
         margin-left: 1rem;
-
-        button {
-
-        }
     }
 }
 
 .experience {
     display: grid;
+    grid-template-columns: repeat(2, 1fr) auto;
     grid-template-areas: 
-        "position date"
-        "company date"
-        "task-list task-list";
+        "position date edit-btn"
+        "company date edit-btn"
+        "task-list task-list edit-btn";
     align-items: center;
     padding: 1rem 0;
 
@@ -334,6 +329,11 @@ button {
         grid-area: task-list;
         list-style-type: disc;
         margin: 0 2em;
+    }
+
+    .edit-btn-container {
+        grid-area: edit-btn;
+        margin-left: 1rem;
     }
 }
 

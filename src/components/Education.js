@@ -23,6 +23,8 @@ class Education extends Component {
     };
 
     handleDeleteConfirm = () => {
+        this.props.handleDelete(this.props.educationObj.id);
+        
         this.setState((prevState) => {
             return {
                 ...prevState,

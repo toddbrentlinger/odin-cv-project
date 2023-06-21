@@ -143,6 +143,15 @@ class EducationSection extends Component {
         });
     };
 
+    handleDelete = (educationId) => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                educationList: prevState.educationList.filter((education) => education.id !== educationId),
+            };
+        });
+    };
+
     renderCreateForm() {
         return (
             <Modal handleCancel={this.handleCreateCancel}>
@@ -161,6 +170,7 @@ class EducationSection extends Component {
                     key={educationInst.id}
                     educationObj={educationInst}
                     handleEditSubmit={this.handleEditSubmit}
+                    handleDelete={this.handleDelete}
                 />
             );
         });

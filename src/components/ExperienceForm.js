@@ -10,7 +10,8 @@ class ExperienceForm extends Component {
     };
 
     render() {
-        const {companyName, positionTitle, mainTasks, startDate, endDate, formName, formTitle} = this.props;
+        const {companyName, positionTitle, mainTasks, startDate, endDate} = this.props.experienceObj;
+        const {formName, formTitle} = this.props;
 
         return (
             <section id={`${formName}-form`}>
@@ -35,8 +36,7 @@ class ExperienceForm extends Component {
                     </div>
                     <div className="custom-textarea">
                         <label>
-                            <textarea type="text" name="tasks" placeholder=" " rows={3} required>
-                                {mainTasks}
+                            <textarea type="text" name="tasks" placeholder=" " defaultValue={mainTasks ? mainTasks.join('\n') : mainTasks} rows={3} required>
                             </textarea>
                             <span>Main Tasks</span>
                         </label>
@@ -69,6 +69,7 @@ class ExperienceForm extends Component {
 }
 
 ExperienceForm.defaultProps = {
+    experienceObj: {},
     formName: 'experience-create',
     formTitle: 'Add New Experience',
 };

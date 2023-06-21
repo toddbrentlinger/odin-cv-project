@@ -1,3 +1,10 @@
+6/20/23
+
+- Combine Experience and Education as well as their form components into one that is extended
+by each. Too much similar functionality in both.
+GeneralProperty -> Experience, Education
+GeneralForm -> ExperienceForm, EducationForm
+
 6/18/23
 
 X Replace 'address' key with 'location' in general info

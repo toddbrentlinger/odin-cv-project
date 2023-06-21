@@ -175,6 +175,65 @@ class ExperienceSection extends Component {
         });
     };
 
+    handleEditSubmit = (e, experienceId) => {
+        e.preventDefault();
+
+        // Create copy of experience list
+        const newExperienceList = [...this.state.experienceList];
+
+        // Find matching experience obj with matching id
+        const experienceToEdit = newExperienceList.find((experienceObj) => experienceObj.id === experienceId);
+        
+        // Return if no match was found
+        if (experienceToEdit === undefined) { return; }
+
+        // Edit values of matching experience object
+        experienceToEdit.companyName = e.target.elements.company.value;
+        experienceToEdit.positionTitle = e.target.elements.position.value;
+        experienceToEdit.mainTasks = e.target.elements.tasks.value.split('\n');
+        experienceToEdit.startDate = Number(e.target.elements.startDate.value);
+        experienceToEdit.endDate = e.target.elements.endDate.value 
+            ? Number(e.target.elements.endDate.value)
+            : null;
+
+        // Sort experience list
+        newExperienceList.sort((a,b) => {
+            // If both end dates are null, sort by start date
+            if (a.endDate === null && b.endDate === null) {
+                return b.startDate - a.startDate;
+            }
+
+            // If reach this point, at least one end date is NOT null
+            // If one end date is null, sort that one first
+            if (a.endDate === null) {
+                return -1;
+            }
+            if (b.endDate === null) {
+                return 1;
+            }
+
+            // If reach this point, both end dates are NOT null
+            // Sort by end date, most recent date first
+            return b.endDate - a.endDate;
+        });
+
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                experienceList: newExperienceList,
+            };
+        });
+    };
+
+    handleDelete = (experienceId) => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                experienceList: prevState.experienceList.filter((experience) => experience.id !== experienceId),
+            };
+        });
+    };
+
     renderCreateForm() {
         return (
             <Modal handleCancel={this.handleCreateCancel}>
@@ -191,11 +250,9 @@ class ExperienceSection extends Component {
             return (
                 <Experience
                     key={experienceInst.id}
-                    companyName={experienceInst.companyName}
-                    positionTitle={experienceInst.positionTitle}
-                    mainTasks={experienceInst.mainTasks}
-                    startDate={experienceInst.startDate}
-                    endDate={experienceInst.endDate}
+                    experienceObj={experienceInst}
+                    handleEditSubmit={this.handleEditSubmit}
+                    handleDelete={this.handleDelete}
                 />
             );
         });
